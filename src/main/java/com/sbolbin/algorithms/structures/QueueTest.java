@@ -1,14 +1,15 @@
-package com.sbolibn.algorithms.structures;
+package com.sbolbin.algorithms.structures;
 
-public class StackTest {
+public class QueueTest {
 
     public static void main(String[] args) {
-        testStackImpl(new LinkedStack(), 1000);
-        testStackImpl(new ArrayStack(), 1000);
+        int size = 1000;
+        testQueueImpl(new LinkedQueue(), size);
+        testQueueImpl(new ArrayQueue(), size);
 
     }
 
-    private static void testStackImpl(Stack stack, int size) {
+    private static void testQueueImpl(Queue queue, int size) {
 
         System.out.println();
         System.out.println("--------------------");
@@ -18,18 +19,18 @@ public class StackTest {
         StringBuilder sb2 = new StringBuilder();
 
         for(int i = 0; i < size; i++) {
-            stack.push(" " + i);
+            queue.enqueue(" " + i);
         }
 
-        while (!stack.isEmpty()) {
-            sb1.append(stack.pop());
+        while (!queue.isEmpty()) {
+            sb1.append(queue.dequeue());
         }
 
         System.out.println();
 
         for(int i = 0; i < size; i++) {
-            stack.push(" " + i);
-            sb2.append(stack.pop());
+            queue.enqueue(" " + i);
+            sb2.append(queue.dequeue());
         }
 
         assert sb1.toString().equals(sb2.toString());
@@ -37,5 +38,4 @@ public class StackTest {
         System.out.println(sb1.toString());
         System.out.println("--------------------");
     }
-
 }

@@ -1,4 +1,4 @@
-package com.sbolibn.algorithms.unionfind;
+package com.sbolbin.algorithms.unionfind;
 
 public abstract class AbstractUF implements UF {
 

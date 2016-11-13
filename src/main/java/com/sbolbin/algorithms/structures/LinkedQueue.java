@@ -1,4 +1,4 @@
-package com.sbolibn.algorithms.structures;
+package com.sbolbin.algorithms.structures;
 
 public class LinkedQueue implements Queue {
 

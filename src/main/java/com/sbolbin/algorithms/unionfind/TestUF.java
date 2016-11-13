@@ -1,4 +1,4 @@
-package com.sbolibn.algorithms.unionfind;
+package com.sbolbin.algorithms.unionfind;
 
 import java.io.IOException;
 

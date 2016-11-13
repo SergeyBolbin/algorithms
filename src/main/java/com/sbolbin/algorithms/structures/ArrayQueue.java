@@ -1,4 +1,4 @@
-package com.sbolibn.algorithms.structures;
+package com.sbolbin.algorithms.structures;
 
 import java.util.Arrays;
 
@@ -19,8 +19,9 @@ public class ArrayQueue implements Queue {
 
     @Override
     public String dequeue() {
-        resizeIfNeeded();
-        return items[start++];
+        String result = items[start];
+        items[start++] = null;
+        return result;
     }
 
     @Override
@@ -41,9 +42,5 @@ public class ArrayQueue implements Queue {
             System.out.println("Resize to " + newSize);
             items = Arrays.copyOf(items, newSize);
         }
-    }
-
-    private void shrinkToSize() {
-        
     }
 }
