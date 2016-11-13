@@ -12,20 +12,20 @@ public class LinkedStack implements Stack {
         }
     }
 
-    private Node root = null;
+    private Node head = null;
 
 
     public String pop() {
-        String value = root.item;
-        root = root.next;
+        String value = head.item;
+        head = head.next;
         return value;
     }
 
     public void push(String item) {
-        root = new Node(item, root);
+        head = new Node(item, head);
     }
 
     public boolean isEmpty() {
-        return root == null;
+        return head == null;
     }
 }
