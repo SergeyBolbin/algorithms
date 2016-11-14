@@ -2,33 +2,34 @@ package com.sbolbin.algorithms.structures;
 
 import java.util.Arrays;
 
-public class ArrayStack implements Stack {
+public class ArrayStack<T> implements Stack<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
     private int n;
-    private String[] items;
+    private Object[] items;
 
     public ArrayStack() {
         this(DEFAULT_CAPACITY);
     }
 
     public ArrayStack(int capacity) {
-        items = new String[capacity];
+        items = new Object[capacity];
     }
 
     @Override
-    public String pop() {
-        String res = items[--n];
+    public T pop() {
+        @SuppressWarnings("unchecked")
+        T res = (T) items[--n];
         items[n] = null;
-        if(n > 0 && n == items.length / 4) resize(items.length / 2);
+        if (n > 0 && n == items.length / 4) resize(items.length / 2);
         return res;
     }
 
     @Override
-    public void push(String item) {
+    public void push(T item) {
         items[n++] = item;
-        if(n == items.length) resize(items.length * 2);
+        if (n == items.length) resize(items.length * 2);
     }
 
     @Override

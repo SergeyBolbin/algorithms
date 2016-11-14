@@ -2,30 +2,31 @@ package com.sbolbin.algorithms.structures;
 
 import java.util.Arrays;
 
-public class ArrayQueue implements Queue {
+public class ArrayQueue<T> implements Queue<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
     private int end;
     private int start;
-    private String[] items;
+    private Object[] items;
 
     public ArrayQueue() {
         this(DEFAULT_CAPACITY);
     }
 
     public ArrayQueue(int capacity) {
-        items = new String[capacity];
+        items = new Object[capacity];
     }
 
     @Override
-    public String dequeue() {
-        String result = items[start];
+    public T dequeue() {
+        @SuppressWarnings("unchecked")
+        T result = (T) items[start];
         items[start++] = null;
         return result;
     }
 
     @Override
-    public void enqueue(String item) {
+    public void enqueue(T item) {
         resizeIfNeeded();
         items[end++] = item;
     }
@@ -37,7 +38,7 @@ public class ArrayQueue implements Queue {
 
     private void resizeIfNeeded() {
         int lastElement = items.length - 1;
-        if(end == lastElement) {
+        if (end == lastElement) {
             int newSize = items.length * 2;
             System.out.println("Resize to " + newSize);
             items = Arrays.copyOf(items, newSize);

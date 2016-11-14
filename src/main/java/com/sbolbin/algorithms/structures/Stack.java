@@ -1,10 +1,10 @@
 package com.sbolbin.algorithms.structures;
 
-public interface Stack {
+public interface Stack<T> {
 
-    String pop();
+    T pop();
 
-    void push(String item);
+    void push(T item);
 
     boolean isEmpty();
 

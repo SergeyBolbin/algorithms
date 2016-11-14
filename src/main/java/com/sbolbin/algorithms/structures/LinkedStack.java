@@ -1,12 +1,12 @@
 package com.sbolbin.algorithms.structures;
 
-public class LinkedStack implements Stack {
+public class LinkedStack<T> implements Stack<T> {
 
     private class Node {
-        private String item;
+        private T item;
         private Node next;
 
-        public Node(String item, Node next) {
+        Node(T item, Node next) {
             this.item = item;
             this.next = next;
         }
@@ -15,13 +15,13 @@ public class LinkedStack implements Stack {
     private Node head = null;
 
 
-    public String pop() {
-        String value = head.item;
+    public T pop() {
+        T value = head.item;
         head = head.next;
         return value;
     }
 
-    public void push(String item) {
+    public void push(T item) {
         head = new Node(item, head);
     }
 

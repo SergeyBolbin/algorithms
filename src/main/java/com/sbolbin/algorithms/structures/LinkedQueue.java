@@ -1,12 +1,12 @@
 package com.sbolbin.algorithms.structures;
 
-public class LinkedQueue implements Queue {
+public class LinkedQueue<T> implements Queue<T> {
 
     private class Node {
-        private String item;
+        private T item;
         private Node next;
 
-        Node(String item, Node next) {
+        Node(T item, Node next) {
             this.item = item;
             this.next = next;
         }
@@ -16,16 +16,16 @@ public class LinkedQueue implements Queue {
     private Node tail;
 
     @Override
-    public String dequeue() {
-        String value = head.item;
+    public T dequeue() {
+        T value = head.item;
         head = head.next;
         return value;
     }
 
     @Override
-    public void enqueue(String item) {
+    public void enqueue(T item) {
         Node newTail = new Node(item, null);
-        if(head == null) {
+        if (head == null) {
             head = tail = newTail;
         } else {
             tail.next = newTail;

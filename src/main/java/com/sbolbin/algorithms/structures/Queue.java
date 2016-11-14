@@ -1,10 +1,10 @@
 package com.sbolbin.algorithms.structures;
 
-public interface Queue {
+public interface Queue<T> {
 
-    String dequeue();
+    T dequeue();
 
-    void enqueue(String item);
+    void enqueue(T item);
 
     boolean isEmpty();
 
