@@ -1,6 +1,7 @@
 package com.sbolbin.algorithms.structures;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayQueue<T> implements Queue<T> {
 
@@ -43,5 +44,24 @@ public class ArrayQueue<T> implements Queue<T> {
             System.out.println("Resize to " + newSize);
             items = Arrays.copyOf(items, newSize);
         }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+
+            private int currentIndex = start;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < end;
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public T next() {
+                return (T) items[currentIndex++];
+            }
+        };
     }
 }

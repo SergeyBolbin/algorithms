@@ -1,6 +1,6 @@
 package com.sbolbin.algorithms.structures;
 
-public interface Queue<T> {
+public interface Queue<T> extends Iterable<T> {
 
     T dequeue();
 

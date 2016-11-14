@@ -35,9 +35,22 @@ public class QueueTest {
             sb2.append(' ');
         }
 
+        StringBuilder sb3 = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            queue.enqueue(i);
+        }
+
+        for(Integer elem:  queue) {
+            sb3.append(elem);
+            sb3.append(' ');
+        }
+
         if (!sb1.toString().equals(sb2.toString())) throw new AssertionError();
+        if (!sb1.toString().equals(sb3.toString())) throw new AssertionError();
 
         System.out.println(sb1.toString());
+        System.out.println(sb2.toString());
+        System.out.println(sb3.toString());
         System.out.println("--------------------");
     }
 }

@@ -18,7 +18,7 @@ public class LinkedStack<T> implements Stack<T> {
 
         private Node current;
 
-        public ListIterator(Node current) {
+        ListIterator(Node current) {
             this.current = current;
         }
 
