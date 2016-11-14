@@ -35,7 +35,7 @@ public class QueueTest {
             sb2.append(' ');
         }
 
-        assert sb1.toString().equals(sb2.toString());
+        if (!sb1.toString().equals(sb2.toString())) throw new AssertionError();
 
         System.out.println(sb1.toString());
         System.out.println("--------------------");

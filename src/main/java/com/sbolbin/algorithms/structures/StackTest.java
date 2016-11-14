@@ -29,16 +29,31 @@ public class StackTest {
 
         System.out.println();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = size - 1; i >= 0; i--) {
             stack.push(i);
             sb2.append(stack.pop());
             sb2.append(' ');
         }
 
-        assert sb1.toString().equals(sb2.toString());
+        StringBuilder sb3 = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            stack.push(i);
+        }
+
+        for (Integer element : stack) {
+            sb3.append(element);
+            sb3.append(' ');
+        }
+
+        if (!sb1.toString().equals(sb2.toString())) throw new AssertionError();
+        if (!sb1.toString().equals(sb3.toString())) throw new AssertionError();
 
         System.out.println(sb1.toString());
+        System.out.println(sb2.toString());
+        System.out.println(sb3.toString());
         System.out.println("--------------------");
+
+
     }
 
 }
