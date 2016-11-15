@@ -18,12 +18,4 @@ public class ShellSort {
             h = h / 3;
         }
     }
-
-    public static void main(String[] args) {
-        Integer[] arr = {2, 6, 5, 3, 7, 1, 0, 4, 9, 8};
-        sort(arr);
-
-        if (!isSorted(arr)) throw new AssertionError();
-        print(arr);
-    }
 }

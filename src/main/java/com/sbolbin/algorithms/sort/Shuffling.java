@@ -13,13 +13,6 @@ public class Shuffling {
             exchange(arr, i, rnd);
         }
     }
-
-    public static void main(String[] args) {
-        Integer[] arr = {2, 6, 5, 3, 7, 1, 0, 4, 9, 8};
-        print(arr);
-        shuffle(arr);
-        print(arr);
-    }
 }
 
 
