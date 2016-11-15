@@ -17,8 +17,6 @@ public class ShellSort {
             }
             h = h / 3;
         }
-
-
     }
 
     public static void main(String[] args) {
