@@ -1,17 +1,27 @@
 package com.sbolbin.algorithms.unionfind;
 
-import java.io.IOException;
+import org.junit.Test;
 
-public class TestUF {
-    public static void main(String[] args) throws IOException {
-        int size = 10;
+public class UFTest {
 
+    private int size = 10;
+
+    @Test
+    public void testQuickFind() {
         performTest(new UFQuickFind(size));
+    }
+
+    @Test
+    public void testQuickUnion() {
         performTest(new UFQuickUnion(size));
+    }
+
+    @Test
+    public void testQuickUnionWeighted() {
         performTest(new UFQuickUnionWeighted(size));
     }
 
-    private static void performTest(UF uf) {
+    private void performTest(UF uf) {
         System.out.println();
 
         uf.union(4, 3);
@@ -20,8 +30,8 @@ public class TestUF {
         uf.union(9, 4);
         uf.union(2, 1);
 
-        if (!uf.connected(8, 9)) throw new AssertionError();
-        if (uf.connected(0, 7)) throw new AssertionError();
+        assert uf.connected(8, 9);
+        assert !uf.connected(0, 7);
         System.out.println(uf);
 
         uf.union(5, 0);
@@ -29,12 +39,11 @@ public class TestUF {
         uf.union(6, 1);
         uf.union(1, 0);
 
-        if (!uf.connected(8, 9)) throw new AssertionError();
-        if (!uf.connected(0, 7)) throw new AssertionError();
+        assert uf.connected(8, 9);
+        assert uf.connected(0, 7);
         System.out.println(uf);
 
         uf.union(7, 8);
         System.out.println(uf);
     }
-
 }

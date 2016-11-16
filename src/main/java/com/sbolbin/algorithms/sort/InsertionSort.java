@@ -10,6 +10,8 @@ public class InsertionSort {
             for (int j = i; j > 0; j--) {
                 if (less(arr[j], arr[j - 1])) {
                     exchange(arr, j, j - 1);
+                } else {
+                    break;
                 }
             }
         }
