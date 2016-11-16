@@ -34,6 +34,14 @@ public class SortTest {
     }
 
     @Test
+    public void mergeSortTest() {
+        Integer[] arrayToSort = arr.clone();
+        MergeSort.sort(arrayToSort);
+        print(arrayToSort);
+        assert isSorted(arrayToSort);
+    }
+
+    @Test
     public void shufflingTest() {
         Integer[] arrayToShuffle = arr.clone();
         Shuffling.shuffle(arrayToShuffle);

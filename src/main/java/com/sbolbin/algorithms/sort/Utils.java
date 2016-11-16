@@ -23,7 +23,15 @@ final class Utils {
                 return false;
             }
         }
+        return true;
+    }
 
+    static boolean isSorted(Comparable[] arr, int lo, int hi) {
+        for (int i = lo; i < hi - 1; i++) {
+            if (!less(arr[i], arr[i + 1])) {
+                return false;
+            }
+        }
         return true;
     }
 
