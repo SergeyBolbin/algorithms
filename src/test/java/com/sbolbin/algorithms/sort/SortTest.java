@@ -42,6 +42,30 @@ public class SortTest {
     }
 
     @Test
+    public void quickSortTest() {
+        Integer[] arrayToSort = arr.clone();
+        QuickSort.sort(arrayToSort);
+        print(arrayToSort);
+        assert isSorted(arrayToSort);
+    }
+
+
+    @Test
+    public void partitionTest() {
+        Integer[] arrayToSort = arr.clone();
+        int j = QuickSort.partition(arrayToSort, 0, arrayToSort.length - 1);
+        print(arrayToSort);
+        System.out.println(j);
+        for (int i = 0; i < j; i++) {
+            assert arrayToSort[i] <= arrayToSort[j];
+        }
+
+        for (int i = j; i < arrayToSort.length; i++) {
+            assert arrayToSort[i] >= arrayToSort[j];
+        }
+    }
+
+    @Test
     public void shufflingTest() {
         Integer[] arrayToShuffle = arr.clone();
         Shuffling.shuffle(arrayToShuffle);
