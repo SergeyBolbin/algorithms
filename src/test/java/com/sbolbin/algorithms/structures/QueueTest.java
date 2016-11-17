@@ -1,19 +1,24 @@
 package com.sbolbin.algorithms.structures;
 
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
 public class QueueTest {
 
-    public static void main(String[] args) {
-        int size = 1000;
-        testQueueImpl(new LinkedQueue<>(), size);
-        testQueueImpl(new ArrayQueue<>(), size);
+    private final static int size = 1000;
 
+    @Test
+    public void testLinkedQueue() {
+        testQueueImpl(new LinkedQueue<>(), size);
     }
 
-    private static void testQueueImpl(Queue<Integer> queue, int size) {
+    @Test
+    public void testArrayQueue() {
+        testQueueImpl(new ArrayQueue<>(), size);
+    }
 
-        System.out.println();
-        System.out.println("--------------------");
-
+    private void testQueueImpl(Queue<Integer> queue, int size) {
 
         StringBuilder sb1 = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
@@ -40,17 +45,18 @@ public class QueueTest {
             queue.enqueue(i);
         }
 
-        for(Integer elem:  queue) {
+        for (Integer elem : queue) {
             sb3.append(elem);
             sb3.append(' ');
         }
 
-        if (!sb1.toString().equals(sb2.toString())) throw new AssertionError();
-        if (!sb1.toString().equals(sb3.toString())) throw new AssertionError();
 
         System.out.println(sb1.toString());
         System.out.println(sb2.toString());
         System.out.println(sb3.toString());
-        System.out.println("--------------------");
+
+        assertEquals(sb1.toString(), sb2.toString());
+        assertEquals(sb1.toString(), sb3.toString());
     }
+
 }

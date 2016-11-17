@@ -1,19 +1,23 @@
 package com.sbolbin.algorithms.structures;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class StackTest {
 
-    public static void main(String[] args) {
-        int size = 1000;
-        testStackImpl(new LinkedStack<>(), size);
-        testStackImpl(new ArrayStack<>(), size);
+    private static final int size = 1000;
 
+    @Test
+    public void testLinkedStack() {
+        testStackImpl(new LinkedStack<>(), size);
     }
 
-    private static void testStackImpl(Stack<Integer> stack, int size) {
+    @Test
+    public void testArrayStack() {
+        testStackImpl(new ArrayStack<>(), size);
+    }
 
-        System.out.println();
-        System.out.println("--------------------");
-
+    private void testStackImpl(Stack<Integer> stack, int size) {
 
         StringBuilder sb1 = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
@@ -45,15 +49,12 @@ public class StackTest {
             sb3.append(' ');
         }
 
-        if (!sb1.toString().equals(sb2.toString())) throw new AssertionError();
-        if (!sb1.toString().equals(sb3.toString())) throw new AssertionError();
-
         System.out.println(sb1.toString());
         System.out.println(sb2.toString());
         System.out.println(sb3.toString());
-        System.out.println("--------------------");
 
-
+        assertEquals(sb1.toString(), sb2.toString());
+        assertEquals(sb1.toString(), sb3.toString());
     }
 
 }
