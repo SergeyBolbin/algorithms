@@ -2,8 +2,8 @@ package com.sbolbin.algorithms.sort;
 
 import org.junit.Test;
 
-import static com.sbolbin.algorithms.sort.Utils.isSorted;
-import static com.sbolbin.algorithms.sort.Utils.print;
+import static com.sbolbin.algorithms.utils.Utils.isSorted;
+import static com.sbolbin.algorithms.utils.Utils.print;
 
 public class SortTest {
 

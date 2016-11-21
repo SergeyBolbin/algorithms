@@ -1,7 +1,7 @@
 package com.sbolbin.algorithms.sort;
 
-import static com.sbolbin.algorithms.sort.Utils.isSorted;
-import static com.sbolbin.algorithms.sort.Utils.less;
+import static com.sbolbin.algorithms.utils.Utils.isSorted;
+import static com.sbolbin.algorithms.utils.Utils.less;
 
 public class MergeSort {
 

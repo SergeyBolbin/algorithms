@@ -2,7 +2,7 @@ package com.sbolbin.algorithms.sort;
 
 import java.util.Random;
 
-import static com.sbolbin.algorithms.sort.Utils.*;
+import static com.sbolbin.algorithms.utils.Utils.*;
 
 public class Shuffling {
 
