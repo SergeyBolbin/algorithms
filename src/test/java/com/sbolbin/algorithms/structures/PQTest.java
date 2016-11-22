@@ -9,6 +9,11 @@ public class PQTest {
         performTest(new UnorderedMaxPQ<>());
     }
 
+    @Test
+    public void testBinaryHeapPQ() {
+        performTest(new BinaryHeapPQ<>());
+    }
+
     private void performTest(MaxPQ<Integer> maxPQ) {
         int[] elements = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         for (int elem : elements) {

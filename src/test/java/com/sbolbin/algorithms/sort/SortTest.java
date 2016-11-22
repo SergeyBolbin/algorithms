@@ -49,6 +49,14 @@ public class SortTest {
         assert isSorted(arrayToSort);
     }
 
+    @Test
+    public void heapSortTest() {
+        Integer[] arrayToSort = arr.clone();
+        HeapSort.sort(arrayToSort);
+        print(arrayToSort);
+        assert isSorted(arrayToSort);
+    }
+
 
     @Test
     public void partitionTest() {
