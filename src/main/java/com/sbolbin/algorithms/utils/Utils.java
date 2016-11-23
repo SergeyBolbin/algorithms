@@ -41,4 +41,9 @@ public final class Utils {
         }
         System.out.println();
     }
+
+    public static <T> void insertAtPosition(T[] arr, int pos, int size, T val) {
+        System.arraycopy(arr, pos, arr, pos + 1, size - pos);
+        arr[pos] = val;
+    }
 }
