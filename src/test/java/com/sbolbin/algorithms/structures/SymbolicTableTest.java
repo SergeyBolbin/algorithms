@@ -2,8 +2,7 @@ package com.sbolbin.algorithms.structures;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class SymbolicTableTest {
@@ -11,6 +10,11 @@ public class SymbolicTableTest {
     @Test
     public void testArraySymbolTable() {
         testSymbolTable(new ArraySymbolTable<>());
+    }
+
+    @Test
+    public void testBST() {
+        testSymbolTable(new BST<>());
     }
 
     private void testSymbolTable(SymbolTable<String, Integer> table) {
@@ -39,7 +43,14 @@ public class SymbolicTableTest {
         assertEquals(table.get("C"), Integer.valueOf(2));
         assertEquals(table.get("D"), Integer.valueOf(1));
 
-        assertEquals(table.keys(), Arrays.asList("A", "B", "C", "D"));
+        String[] expectedArr = {"A", "B", "C", "D"};
+        String[] actualArr = new String[table.size()];
+        int i = 0;
+        for (String k : table.keys()) {
+            actualArr[i++] = k;
+        }
+
+        assertArrayEquals(expectedArr, actualArr);
 
     }
 }
