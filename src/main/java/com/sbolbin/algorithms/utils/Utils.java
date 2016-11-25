@@ -46,4 +46,9 @@ public final class Utils {
         System.arraycopy(arr, pos, arr, pos + 1, size - pos);
         arr[pos] = val;
     }
+
+    public static <T> void shiftToTheLeft(T[] arr, int pos, int size) {
+        System.arraycopy(arr, pos + 1, arr, pos, size - 1 - pos);
+        arr[size - 1] = null;
+    }
 }

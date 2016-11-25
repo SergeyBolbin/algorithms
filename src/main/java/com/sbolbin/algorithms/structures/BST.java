@@ -66,6 +66,57 @@ public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable
         return node == null ? 0 : node.size;
     }
 
+
+    @Override
+    public void delete(Key key) {
+        root = delete(root, key);
+    }
+
+    //Hibbard deletion impl
+    private Node delete(Node parent, Key key) {
+        if (parent == null) return null;
+        int cmp = key.compareTo(parent.key);
+
+        if (cmp > 0) {
+            parent.right = delete(parent.right, key);
+        } else if (cmp < 0) {
+            parent.left = delete(parent.left, key);
+        } else {
+            if (parent.left == null) return parent.right;
+            if (parent.right == null) return parent.left;
+
+            Node t = parent;
+            parent = min(t.right); // min from right children
+            parent.left = t.left;  // restore left subtree as-is
+            parent.right = deleteMin(t.right);  // remove min from right sub-tree (transfer to the top)
+        }
+
+        parent.size = size(parent.left) + 1 + size(parent.right);
+        return parent;
+    }
+
+    private Node min(Node node) {
+        Node t = node;
+        while (t.left != null) {
+            t = t.left;
+        }
+        return t;
+    }
+
+    public void deleteMin() {
+        root = deleteMin(root);
+    }
+
+    private Node deleteMin(Node x) {
+        if (x.left == null) {
+            return x.right;
+        }
+
+        x.left = deleteMin(x.left);
+        x.size = size(x.left) + 1 + size(x.right);
+        return x;
+    }
+
     @Override
     public Iterable<Key> keys() {
         Queue<Key> queue = new LinkedQueue<>();
