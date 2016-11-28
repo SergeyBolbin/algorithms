@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class SymbolTableTest {
 
@@ -16,6 +15,11 @@ public class SymbolTableTest {
     @Test
     public void testBST() {
         testSymbolTable(new BST<>());
+    }
+
+    @Test
+    public void testRedBlackBST() {
+        testSymbolTable(new RedBlackBST<>());
     }
 
     private void testSymbolTable(SymbolTable<String, Integer> table) {
