@@ -4,7 +4,7 @@ import static com.sbolbin.algorithms.utils.Utils.shiftToTheLeft;
 
 public class LinearProbingHashTable<Key, Value> implements HashTable<Key, Value> {
 
-    private static final int M = 1000;
+    private static final int M = 3000;
 
     @SuppressWarnings("unchecked")
     private Value[] values = (Value[]) new Object[M];
@@ -38,7 +38,7 @@ public class LinearProbingHashTable<Key, Value> implements HashTable<Key, Value>
     }
 
     @Override
-    public Value remove(Key key) {
+    public Value remove(Key key) { //TODO: fixme
         int i;
         for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (key.equals(keys[i])) {
