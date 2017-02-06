@@ -73,6 +73,11 @@ public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable
         return queue;
     }
 
+    @Override
+    public void delete(Key key) {
+        super.delete(key);
+    }
+
     private void inorder(Node node, Queue<Key> queue) {
         if (node == null) return;
         inorder(node.left, queue);
