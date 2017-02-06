@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-public class SymbolicTableTest {
+public class SymbolTableTest {
 
     @Test
     public void testArraySymbolTable() {
@@ -15,6 +15,11 @@ public class SymbolicTableTest {
     @Test
     public void testBST() {
         testSymbolTable(new BST<>());
+    }
+
+    @Test
+    public void testRedBlackBST() {
+        testSymbolTable(new RedBlackBST<>());
     }
 
     private void testSymbolTable(SymbolTable<String, Integer> table) {
@@ -52,5 +57,20 @@ public class SymbolicTableTest {
 
         assertArrayEquals(expectedArr, actualArr);
 
+        table.delete("B");
+        assertEquals(3, table.size());
+        assert table.contains("A") && table.contains("C") && table.contains("D") && !table.contains("B");
+
+        table.delete("E");
+        assertEquals(3, table.size());
+        assert table.contains("A") && table.contains("C") && table.contains("D") && !table.contains("B");
+
+        table.delete("A");
+        assertEquals(2, table.size());
+        assert !table.contains("A") && table.contains("C") && table.contains("D") && !table.contains("B");
+
+        table.delete("D");
+        assertEquals(1, table.size());
+        assert !table.contains("A") && table.contains("C") && !table.contains("D") && !table.contains("B");
     }
 }

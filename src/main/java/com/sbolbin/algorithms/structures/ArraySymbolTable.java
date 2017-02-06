@@ -3,6 +3,7 @@ package com.sbolbin.algorithms.structures;
 import java.util.Arrays;
 
 import static com.sbolbin.algorithms.utils.Utils.insertAtPosition;
+import static com.sbolbin.algorithms.utils.Utils.shiftToTheLeft;
 
 public class ArraySymbolTable<Key extends Comparable<Key>, Value> extends AbstractSymbolTable<Key, Value> {
 
@@ -79,6 +80,16 @@ public class ArraySymbolTable<Key extends Comparable<Key>, Value> extends Abstra
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public void delete(Key key) {
+        int rank = getRank(key);
+        if (rank < size && keys[rank].compareTo(key) == 0) {
+            shiftToTheLeft(keys, rank, size);
+            shiftToTheLeft(values, rank, size);
+            size --;
+        }
     }
 
     @Override

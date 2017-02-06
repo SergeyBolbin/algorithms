@@ -1,30 +1,41 @@
 package com.sbolbin.algorithms.structures;
 
-public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable<Key, Value> {
+public class RedBlackBST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable<Key, Value>{
+
+    private static final boolean RED = true;
+    private static final boolean BLACK = false;
 
     private class Node {
 
         private Key key;
         private Value value;
         private int size;
+        private boolean color;
 
         private Node left, right;
 
-        public Node(Key key, Value value) {
+        public Node(Key key, Value value, boolean color) {
             this.key = key;
             this.value = value;
+            this.color = color;
         }
     }
-
     private Node root;
 
+    /**
+     * Balance modifications rules:
+     *
+     * ・Right child red, left child black: rotate left.
+     * ・Left child, left-left grandchild red: rotate right.
+     * ・Both children red: flip colors.
+     */
     @Override
     public void put(Key key, Value value) {
         root = put(root, key, value);
     }
 
     private Node put(Node node, Key key, Value value) {
-        if (node == null) node = new Node(key, value);
+        if (node == null) node = new Node(key, value, RED);
 
         int cmp = node.key.compareTo(key);
         if (cmp < 0) {
@@ -35,7 +46,19 @@ public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable
             node.value = value;
         }
 
-        node.size = size(node.left) + 1 + size(node.right);
+        if (isRed(node.right) && !isRed(node.left)) {
+            node = rotateLeft(node);
+        }
+
+        if (isRed(node.left) && isRed(node.left.left)) {
+            node = rotateRight(node);
+        }
+
+        if (isRed(node.left) && isRed(node.right)) {
+            flipColors(node);
+        }
+
+        updateSize(node);
         return node;
     }
 
@@ -91,8 +114,12 @@ public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable
             parent.right = deleteMin(t.right);  // remove min from right sub-tree (transfer to the top)
         }
 
-        parent.size = size(parent.left) + 1 + size(parent.right);
+        updateSize(parent);
         return parent;
+    }
+
+    private void updateSize(Node node) {
+        node.size = size(node.left) + 1 + size(node.right);
     }
 
     private Node min(Node node) {
@@ -103,17 +130,13 @@ public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable
         return t;
     }
 
-    public void deleteMin() {
-        root = deleteMin(root);
-    }
-
     private Node deleteMin(Node x) {
         if (x.left == null) {
             return x.right;
         }
 
         x.left = deleteMin(x.left);
-        x.size = size(x.left) + 1 + size(x.right);
+        updateSize(x);
         return x;
     }
 
@@ -124,15 +147,44 @@ public class BST<Key extends Comparable<Key>, Value> extends AbstractSymbolTable
         return queue;
     }
 
-    @Override
-    public void delete(Key key) {
-        super.delete(key);
-    }
-
     private void inorder(Node node, Queue<Key> queue) {
         if (node == null) return;
         inorder(node.left, queue);
         queue.enqueue(node.key);
         inorder(node.right, queue);
+    }
+
+    private boolean isRed(Node node) {
+        return node != null && node.color == RED;
+    }
+
+    private Node rotateLeft(Node h) {
+        assert(isRed(h.right));
+        Node x = h.right;
+        h.right = x.left;
+        x.left = h;
+        x.color = h.color;
+        h.color = RED;
+        updateSize(h);
+        return x;
+    }
+
+    private Node rotateRight(Node h) {
+        assert(isRed(h.left));
+        Node x = h.left;
+        h.left = x.right;
+        x.right = h;
+        x.color = h.color;
+        h.color = RED;
+        updateSize(h);
+        return x;
+    }
+
+    private void flipColors(Node h) {
+        assert(isRed(h.left));
+        assert(isRed(h.right));
+        h.color = RED;
+        h.left.color = BLACK;
+        h.right.color = BLACK;
     }
 }
